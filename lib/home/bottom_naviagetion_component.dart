@@ -3,6 +3,7 @@ import 'package:bzhan_demo/home/mine_view.dart';
 import 'package:bzhan_demo/home/search_view.dart';
 import 'package:bzhan_demo/home/shopping_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class BottomNaviagetionComponent extends StatefulWidget {
   BottomNaviagetionComponent({Key key}) : super(key: key);
@@ -12,8 +13,8 @@ class BottomNaviagetionComponent extends StatefulWidget {
       _BottomNaviagetionComponentState();
 }
 
-class _BottomNaviagetionComponentState
-    extends State<BottomNaviagetionComponent> {
+class _BottomNaviagetionComponentState extends State<BottomNaviagetionComponent>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     this.currentPage = this.pages[0];
@@ -43,9 +44,8 @@ class _BottomNaviagetionComponentState
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage("assets/avtor.jpg"),
-              radius: MediaQuery.of(context).padding.top - 10,
-            ),
+                backgroundImage: AssetImage("assets/avtor.jpg"),
+                radius: ScreenUtil().setHeight(20)),
             Container(
               margin: EdgeInsets.only(left: 15),
               alignment: Alignment(-0.9, 0),
@@ -71,8 +71,15 @@ class _BottomNaviagetionComponentState
         },
         selectedItemColor: Colors.deepOrangeAccent,
       ),
-      body: currentPage,
+      body: IndexedStack(
+        children: this.pages,
+        index: currentIndex,
+      ),
     );
     ;
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
