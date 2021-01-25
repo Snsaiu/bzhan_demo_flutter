@@ -1,3 +1,4 @@
+import 'package:bzhan_demo/router/application.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -10,15 +11,19 @@ class SearchView extends StatelessWidget {
         child: Container(
       child: Column(
         children: [
-          ChangeNotifierProvider(
-            create: (_) => AddBll(),
-            child: Text("${context.watch<AddBll>().count}"),
-          ),
+          Text("${context.watch<AddBll>().count}"),
           RaisedButton(
             onPressed: () {
               context.read<AddBll>().increment();
             },
             child: Text("click"),
+          ),
+          RaisedButton(
+            onPressed: () {
+              Application.router
+                  .navigateTo(context, "/detail?info=hello world");
+            },
+            child: Text("jump"),
           )
         ],
       ),
