@@ -90,9 +90,14 @@ class HomeView extends StatelessWidget {
               },
             )),
         Container(
+<<<<<<< HEAD
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
           child: RecommandComponent(list: this._recommandList),
           height: ScreenUtil().setHeight(200),
+=======
+          child: RecommandComponent(),
+          height: ScreenUtil().setHeight(300),
+>>>>>>> 2567d7811bb7499674ab7acf658e0187cd6cc89c
           width: ScreenUtil().setWidth(690),
         )
       ],
