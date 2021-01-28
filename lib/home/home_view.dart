@@ -1,6 +1,7 @@
 import 'package:bzhan_demo/components/my_flutter_swiper.dart';
 import 'package:bzhan_demo/components/recommand_Component.dart';
 import 'package:bzhan_demo/components/type_navigator_Component.dart';
+import 'package:bzhan_demo/vo/recommand_vo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,6 +10,8 @@ class HomeView extends StatelessWidget {
   List<Image> _images = [];
 
   List<Map<String, String>> _navaigator = List<Map<String, String>>();
+
+  List<RecommandVo> _recommandList = [];
 
   HomeView() {
     this._images.add(Image.asset("assets/avtor.jpg", fit: BoxFit.fill));
@@ -25,6 +28,32 @@ class HomeView extends StatelessWidget {
     this._navaigator.add({"测试6": "assets/avtor.jpg"});
     this._navaigator.add({"测试7": "assets/avtor.jpg"});
     this._navaigator.add({"测试8": "assets/avtor.jpg"});
+
+    this._recommandList.add(new RecommandVo.rig(
+        name: "测试1",
+        price: "￥100",
+        oldPrice: "￥150",
+        image: "assets/avtor.jpg"));
+    this._recommandList.add(new RecommandVo.rig(
+        name: "测试3",
+        price: "￥100",
+        oldPrice: "￥150",
+        image: "assets/avtor.jpg"));
+    this._recommandList.add(new RecommandVo.rig(
+        name: "测试4",
+        price: "￥100",
+        oldPrice: "￥150",
+        image: "assets/avtor.jpg"));
+    this._recommandList.add(new RecommandVo.rig(
+        name: "测试6",
+        price: "￥100",
+        oldPrice: "￥150",
+        image: "assets/avtor.jpg"));
+    this._recommandList.add(new RecommandVo.rig(
+        name: "测试5",
+        price: "￥100",
+        oldPrice: "￥150",
+        image: "assets/avtor.jpg"));
   }
 
   @override
@@ -57,12 +86,13 @@ class HomeView extends StatelessWidget {
             child: InkWell(
               child: Image.asset("assets/phone.png", fit: BoxFit.fitWidth),
               onTap: () {
-                launch("tel:15952035975");
+                // launch("tel:15952035975");
               },
             )),
         Container(
-          child: RecommandComponent(),
-          height: ScreenUtil().setHeight(100),
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+          child: RecommandComponent(list: this._recommandList),
+          height: ScreenUtil().setHeight(200),
           width: ScreenUtil().setWidth(690),
         )
       ],
